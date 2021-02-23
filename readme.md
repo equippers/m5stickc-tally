@@ -19,7 +19,7 @@ git apply path/to/ATEMbase.patch
 
 ## Build
 
-1. Open `m5stickc-tally/config.h` and adjust the `SWITCHER_IP` and Wifi `SSID` and `PASS`.
+1. Open `m5stickc-tally/config.hpp` and adjust the `SWITCHER_IP` and Wifi `SSID` and `PASS`.
 2. Connect the M5StickC via USB.
 3. Select the serial port.
 4. Upload (Action "Arduino: Upload" in VS Code).

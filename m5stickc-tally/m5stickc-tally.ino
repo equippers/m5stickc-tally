@@ -5,7 +5,7 @@
 #include <ATEMbase.h>
 #include <ATEMstd.h>
 
-#include "config.h"
+#include "config.hpp"
 
 #define LED_PIN 10 // see https://github.com/m5stack/M5StickC#pinmap
 
