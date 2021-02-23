@@ -1,0 +1,45 @@
+diff --git a/ArduinoLibs/ATEMbase/ATEMbase.cpp b/ArduinoLibs/ATEMbase/ATEMbase.cpp
+index 50c18c4..799500c 100755
+--- a/ArduinoLibs/ATEMbase/ATEMbase.cpp
++++ b/ArduinoLibs/ATEMbase/ATEMbase.cpp
+@@ -48,11 +48,7 @@ void ATEMbase::begin(const IPAddress ip, const uint16_t localPort){
+ 	waitingForIncoming = false;
+ 
+ 		// Set up Udp communication object:
+-	#ifdef ESP8266
+ 	WiFiUDP Udp;
+-	#else
+-	EthernetUDP Udp;
+-	#endif
+ 
+ 	_Udp = Udp;
+ 	
+diff --git a/ArduinoLibs/ATEMbase/ATEMbase.h b/ArduinoLibs/ATEMbase/ATEMbase.h
+index f0be6c1..3e15226 100755
+--- a/ArduinoLibs/ATEMbase/ATEMbase.h
++++ b/ArduinoLibs/ATEMbase/ATEMbase.h
+@@ -32,11 +32,7 @@ you can keep a clear conscience: http://skaarhoj.com/about/licenses/
+ 
+ #include "Arduino.h"
+ 
+-#ifdef ESP8266
+-#include <WifiUDP.h>
+-#else
+-#include <EthernetUdp.h>
+-#endif
++#include <WifiUdp.h>
+ 
+ #include <SkaarhojPgmspace.h>
+ 
+@@ -54,11 +50,7 @@ you can keep a clear conscience: http://skaarhoj.com/about/licenses/
+ class ATEMbase
+ {
+   protected:
+-  	#ifdef ESP8266
+   	WiFiUDP _Udp;
+-  	#else
+-	EthernetUDP _Udp;					// UDP object for communication, see constructor.
+-	#endif
+ 	uint16_t _localPort; 				// Default local port to send from. Preferably it's chosen randomly inside the class.
+ 	IPAddress _switcherIP;				// IP address of the switcher
+ 	uint8_t _serialOutput;				// If set, the library will print status/debug information to the Serial object
