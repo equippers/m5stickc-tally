@@ -1,3 +1,5 @@
+#include <WiFi.h>
+
 // --
 // ATEM
 
