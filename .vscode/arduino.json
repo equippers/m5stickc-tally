@@ -1,5 +1,6 @@
 {
     "board": "esp32:esp32:m5stick-c",
     "configuration": "PartitionScheme=default,UploadSpeed=1500000,DebugLevel=none",
-    "sketch": "m5stickc-tally/m5stickc-tally.ino"
+    "sketch": "m5stickc-tally/m5stickc-tally.ino",
+    "port": "/dev/tty.usbserial-ED4D0626F3"
 }

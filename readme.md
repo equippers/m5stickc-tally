@@ -26,9 +26,11 @@ git apply path/to/ATEMbase.patch
 
 ## Use
 
-* Press power button (left) to turn on and hold for 6 secs to turn off.
+* Press power button (left) to turn on and hold for 4 secs to turn off.
 * Button A (the big one) changes the input.
 * Button B (right) changes the label.
+
+The battery level shows the current voltage, which is around `4.15 V` when fully charged (the device turns off if it drops to `3 V`). A `+` indicates that the battery is charging and a `-` that it's discharging.
 
 Disclaimer: The input and label are stored in NVS (non-volatile storage) so that they are persisted when the M5StickC is turned off and on. NVS has a limited number of write cycles before degrading.
 

@@ -14,15 +14,15 @@ ATEMstd AtemSwitcher;
 
 int input = 1;
 int label = 1;
-
-boolean previousInputIsProgram = false;
-boolean previousInputIsPreview = false;
 int previousInput = input;
 int previousLabel = label;
 
+boolean previousInputIsProgram = false;
+boolean previousInputIsPreview = false;
+
 int orientation = INITIAL_ORIENTATION;
 int previousOrientation = orientation;
-int lastOrientationUpdate = millis();
+unsigned long lastOrientationUpdate = millis();
 
 void setup()
 {
@@ -91,7 +91,7 @@ void loop()
 	boolean inputIsProgram = AtemSwitcher.getProgramTally(input);
 	boolean inputIsPreview = AtemSwitcher.getPreviewTally(input);
 
-	if ((orientation != previousOrientation) || (input != previousInput) || (label != previousLabel) || (previousInputIsProgram != inputIsProgram) || (previousInputIsPreview != inputIsPreview))
+	if ((input != previousInput) || (label != previousLabel) || (inputIsProgram != previousInputIsProgram) || (inputIsPreview != previousInputIsPreview) || (orientation != previousOrientation))
 	{
 		if (inputIsProgram && inputIsPreview)
 		{
@@ -129,9 +129,20 @@ void render(int input, int label, unsigned long int screenColor, unsigned long i
 	M5.Lcd.setTextColor(labelColor, screenColor);
 
 	M5.Lcd.setTextDatum(TL_DATUM);
-	M5.Lcd.drawString(String(input), 1, 1, 2);
+	M5.Lcd.drawString(String(input), 1, 1, 1);
+
 	M5.Lcd.setTextDatum(MC_DATUM);
 	M5.Lcd.drawString(String(label), M5.Lcd.width() / 2, M5.Lcd.height() / 2, 8);
+
+	float voltage = M5.Axp.GetBatVoltage();
+	float current = M5.Axp.GetBatCurrent();
+
+	char batteryStatus[9];
+	char chargingIcon = current == 0 ? ' ' : (current > 0 ? '+' : '-');
+	sprintf(batteryStatus, "%c %.2fV", chargingIcon, voltage);
+
+	M5.Lcd.setTextDatum(TR_DATUM);
+	M5.Lcd.drawString(batteryStatus, M5.Lcd.width() - 1, 1, 1);
 }
 
 void updateOrientation()
